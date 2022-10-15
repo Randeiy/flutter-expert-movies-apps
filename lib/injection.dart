@@ -34,7 +34,9 @@ import 'package:ditonton/presentation/provider/movie_search_notifier.dart';
 import 'package:ditonton/presentation/provider/popular_movies_notifier.dart';
 import 'package:ditonton/presentation/provider/provider_tv/now_playing_tv.dart';
 import 'package:ditonton/presentation/provider/provider_tv/popular_tv_notifier.dart';
+import 'package:ditonton/presentation/provider/provider_tv/search_movies_bloc.dart';
 import 'package:ditonton/presentation/provider/provider_tv/top_rated_tv_notifier.dart';
+import 'package:ditonton/presentation/provider/provider_tv/tv_bloc.dart';
 import 'package:ditonton/presentation/provider/provider_tv/tv_detail_notifier.dart';
 import 'package:ditonton/presentation/provider/provider_tv/tv_list_notifier.dart';
 import 'package:ditonton/presentation/provider/provider_tv/tv_search_notifier.dart';
@@ -47,6 +49,26 @@ import 'package:get_it/get_it.dart';
 final locator = GetIt.instance;
 
 void init() {
+  //tvbloc(masihkurang)
+  locator.registerFactory(() => NowPlayingTvBloc(locator()));
+  locator.registerFactory(() => SearchTvBloc(locator()));
+  locator.registerFactory(() => PopularTvBloc(locator()));
+  locator.registerFactory(() => TopRatedTvBloc(locator()));
+  locator.registerFactory(() => TvDetailBloc(locator()));
+  locator.registerFactory(() => RecommendationsTvBloc(locator()));
+  locator.registerFactory(() => WatchlistTvBloc(
+    locator(),
+    locator(),
+    locator(),
+    locator(),
+  ));
+
+  //moviebloc
+  locator.registerFactory(() => SearchMoviesBloc(locator()));
+
+
+
+
   // provider
   locator.registerFactory(
     () => MovieListNotifier(

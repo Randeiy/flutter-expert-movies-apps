@@ -31,6 +31,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:ditonton/injection.dart' as di;
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:ditonton/presentation/provider/provider_tv/tv_bloc.dart';
+import 'package:ditonton/presentation/provider/provider_tv/search_movies_bloc.dart';
 
 void main() {
   di.init();
@@ -42,6 +45,19 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
+        //tvbloc(masihkurang)
+        BlocProvider(create: (_) => di.locator<PopularTvBloc>()),
+        BlocProvider(create: (_) => di.locator<TopRatedTvBloc>()),
+        BlocProvider(create: (_) => di.locator<NowPlayingTvBloc>()),
+        BlocProvider(create: (_) => di.locator<TvDetailBloc>()),
+        BlocProvider(create: (_) => di.locator<RecommendationsTvBloc>()),
+        BlocProvider(create: (_) => di.locator<WatchlistTvBloc>()),
+        BlocProvider(create: (_) => di.locator<SearchTvBloc>()),
+
+        //moviebloc
+        BlocProvider(create: (_) => di.locator<SearchMoviesBloc>()),
+
+
         ChangeNotifierProvider(
           create: (_) => di.locator<MovieListNotifier>(),
         ),
