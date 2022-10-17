@@ -24,10 +24,12 @@ class TvRepositoryImpl implements TvRepository {
     try {
       final result = await remoteDataSource.getNowPlayingTv();
       return Right(result.map((model) => model.toEntity()).toList());
-    } on ServerException {
+    } on ServerFailure {
       return Left(ServerFailure(''));
-    } on SocketException {
+    } on ConnectionFailure {
       return Left(ConnectionFailure('Failed to connect to the network'));
+    } on TlsException {
+      return Left(SSLFailure('CERTIFICATE_VERIFY_FAILED'));
     }
   }
 
@@ -36,10 +38,12 @@ class TvRepositoryImpl implements TvRepository {
     try {
       final result = await remoteDataSource.getTvDetail(id);
       return Right(result.toEntity());
-    } on ServerException {
+    } on ServerFailure {
       return Left(ServerFailure(''));
-    } on SocketException {
+    } on ConnectionFailure {
       return Left(ConnectionFailure('Failed to connect to the network'));
+    } on TlsException {
+      return Left(SSLFailure('CERTIFICATE_VERIFY_FAILED'));
     }
   }
 
@@ -48,10 +52,12 @@ class TvRepositoryImpl implements TvRepository {
     try {
       final result = await remoteDataSource.getTvRecommendations(id);
       return Right(result.map((model) => model.toEntity()).toList());
-    } on ServerException {
+    } on ServerFailure {
       return Left(ServerFailure(''));
-    } on SocketException {
+    } on ConnectionFailure {
       return Left(ConnectionFailure('Failed to connect to the network'));
+    } on TlsException {
+      return Left(SSLFailure('CERTIFICATE_VERIFY_FAILED'));
     }
   }
 
@@ -60,10 +66,12 @@ class TvRepositoryImpl implements TvRepository {
     try {
       final result = await remoteDataSource.getPopularTv();
       return Right(result.map((model) => model.toEntity()).toList());
-    } on ServerException {
+    } on ServerFailure {
       return Left(ServerFailure(''));
-    } on SocketException {
+    } on ConnectionFailure {
       return Left(ConnectionFailure('Failed to connect to the network'));
+    } on TlsException {
+      return Left(SSLFailure('CERTIFICATE_VERIFY_FAILED'));
     }
   }
 
@@ -72,10 +80,12 @@ class TvRepositoryImpl implements TvRepository {
     try {
       final result = await remoteDataSource.getTopRatedTv();
       return Right(result.map((model) => model.toEntity()).toList());
-    } on ServerException {
+    } on ServerFailure {
       return Left(ServerFailure(''));
-    } on SocketException {
+    } on ConnectionFailure {
       return Left(ConnectionFailure('Failed to connect to the network'));
+    } on TlsException {
+      return Left(SSLFailure('CERTIFICATE_VERIFY_FAILED'));
     }
   }
 
@@ -84,10 +94,12 @@ class TvRepositoryImpl implements TvRepository {
     try {
       final result = await remoteDataSource.searchTv(query);
       return Right(result.map((model) => model.toEntity()).toList());
-    } on ServerException {
+    } on ServerFailure {
       return Left(ServerFailure(''));
-    } on SocketException {
+    } on ConnectionFailure {
       return Left(ConnectionFailure('Failed to connect to the network'));
+    } on TlsException {
+      return Left(SSLFailure('CERTIFICATE_VERIFY_FAILED'));
     }
   }
 
@@ -95,12 +107,14 @@ class TvRepositoryImpl implements TvRepository {
   Future<Either<Failure, String>> saveWatchlistTv(TvDetail TvModel) async {
     try {
       final result =
-      await localDataSource.insertWatchlistTv(TvTable.fromEntity(TvModel));
+          await localDataSource.insertWatchlistTv(TvTable.fromEntity(TvModel));
       return Right(result);
-    } on DatabaseException catch (e) {
-      return Left(DatabaseFailure(e.message));
-    } catch (e) {
-      throw e;
+    } on ServerFailure {
+      return Left(ServerFailure(''));
+    } on ConnectionFailure {
+      return Left(ConnectionFailure('Failed to connect to the network'));
+    } on TlsException {
+      return Left(SSLFailure('CERTIFICATE_VERIFY_FAILED'));
     }
   }
 
@@ -108,7 +122,7 @@ class TvRepositoryImpl implements TvRepository {
   Future<Either<Failure, String>> removeWatchlistTv(TvDetail TvModel) async {
     try {
       final result =
-      await localDataSource.removeWatchlistTv(TvTable.fromEntity(TvModel));
+          await localDataSource.removeWatchlistTv(TvTable.fromEntity(TvModel));
       return Right(result);
     } on DatabaseException catch (e) {
       return Left(DatabaseFailure(e.message));

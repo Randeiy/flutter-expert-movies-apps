@@ -15,8 +15,7 @@ class TvTable extends Equatable {
     required this.overview,
   });
 
-  factory TvTable.fromEntity(TvDetail tvSeries) =>
-      TvTable(
+  factory TvTable.fromEntity(TvDetail tvSeries) => TvTable(
         id: tvSeries.id,
         name: tvSeries.name,
         posterPath: tvSeries.posterPath,
@@ -24,32 +23,32 @@ class TvTable extends Equatable {
       );
 
   factory TvTable.fromMap(Map<String, dynamic> map) => TvTable(
-    id: map['id'],
-    name: map['name'],
-    posterPath: map['posterPath'],
-    overview: map['overview'],
-  );
+        id: map['id'],
+        name: map['name'],
+        posterPath: map['posterPath'],
+        overview: map['overview'],
+      );
 
   factory TvTable.fromDTO(TvTable tvSeries) => TvTable(
-    id: tvSeries.id,
-    name: tvSeries.name,
-    posterPath: tvSeries.posterPath,
-    overview: tvSeries.overview,
-  );
+        id: tvSeries.id,
+        name: tvSeries.name,
+        posterPath: tvSeries.posterPath,
+        overview: tvSeries.overview,
+      );
 
   Map<String, dynamic> toJson() => {
-    'id': id,
-    'name': name,
-    'posterPath': posterPath,
-    'overview': overview,
-  };
+        'id': id,
+        'name': name,
+        'posterPath': posterPath,
+        'overview': overview,
+      };
 
   TvModel toEntity() => TvModel.watchlist(
-    id: id,
-    overview: overview,
-    posterPath: posterPath,
-    name: name,
-  );
+        id: id,
+        overview: overview,
+        posterPath: posterPath,
+        name: name,
+      );
 
   @override
   List<Object?> get props => [id, name, posterPath, overview];

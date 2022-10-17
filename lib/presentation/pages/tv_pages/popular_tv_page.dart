@@ -1,5 +1,3 @@
-import 'package:ditonton/common/state_enum.dart';
-import 'package:ditonton/presentation/provider/provider_tv/popular_tv_notifier.dart';
 import 'package:ditonton/presentation/provider/provider_tv/tv_bloc.dart';
 import 'package:ditonton/presentation/widgets/tv_card_list.dart';
 import 'package:flutter/material.dart';

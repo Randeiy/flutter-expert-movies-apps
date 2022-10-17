@@ -6,13 +6,10 @@ import 'package:ditonton/presentation/pages/tv_pages/popular_tv_page.dart';
 import 'package:ditonton/presentation/pages/tv_pages/search_tv_page.dart';
 import 'package:ditonton/presentation/pages/tv_pages/top_rates_tv_page.dart';
 import 'package:ditonton/presentation/pages/tv_pages/tv_detail_page.dart';
-import 'package:ditonton/common/state_enum.dart';
 import 'package:ditonton/presentation/provider/provider_tv/tv_bloc.dart';
-import 'package:ditonton/presentation/provider/provider_tv/tv_list_notifier.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:bloc/bloc.dart';
 
 class HomeTvPage extends StatefulWidget {
   static const ROUTE_NAME = '/home-tv';
@@ -25,7 +22,7 @@ class _HomeTvPageState extends State<HomeTvPage> {
   void initState() {
     super.initState();
     Future.microtask(() {
-      context.read<NowPlayingTvBloc>().add(FetchOnTheAirNow());
+      context.read<NowPlayingTvBloc>().add(FetchNowplayingTv());
       context.read<PopularTvBloc>().add(FetchPopularTv());
       context.read<TopRatedTvBloc>().add(FetchTopRatedTv());
     });

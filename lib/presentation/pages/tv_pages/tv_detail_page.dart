@@ -4,8 +4,6 @@ import 'package:ditonton/domain/entities/genre.dart';
 import 'package:ditonton/domain/entities/tv/tv_detail.dart';
 import 'package:ditonton/domain/entities/tv/tv_entity.dart';
 import 'package:ditonton/presentation/provider/provider_tv/tv_bloc.dart';
-import 'package:ditonton/presentation/provider/provider_tv/tv_detail_notifier.dart';
-import 'package:ditonton/common/state_enum.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
@@ -37,7 +35,7 @@ class _TvDetailPage extends State<TvDetailPage> {
   @override
   Widget build(BuildContext context) {
     final recommendedTv =
-    context.select<RecommendationsTvBloc, List<TvModel>>((value) {
+        context.select<RecommendationsTvBloc, List<TvModel>>((value) {
       if (value.state is TvHasData) {
         return (value.state as TvHasData).tvs;
       } else {
@@ -147,20 +145,20 @@ class DetailContent extends StatelessWidget {
                                 if (state is LoadWatchlistTvData) {
                                   message = isAddedWatchlist
                                       ? WatchlistTvBloc
-                                      .watchlistRemoveSuccessMessage
+                                          .watchlistRemoveSuccessMessage
                                       : WatchlistTvBloc
-                                      .watchlistAddSuccessMessage;
+                                          .watchlistAddSuccessMessage;
                                 } else {
                                   message = isAddedWatchlist == false
                                       ? WatchlistTvBloc
-                                      .watchlistAddSuccessMessage
+                                          .watchlistAddSuccessMessage
                                       : WatchlistTvBloc
-                                      .watchlistRemoveSuccessMessage;
+                                          .watchlistRemoveSuccessMessage;
                                 }
 
                                 if (message ==
-                                    WatchlistTvBloc
-                                        .watchlistAddSuccessMessage ||
+                                        WatchlistTvBloc
+                                            .watchlistAddSuccessMessage ||
                                     message ==
                                         WatchlistTvBloc
                                             .watchlistRemoveSuccessMessage) {
@@ -246,13 +244,13 @@ class DetailContent extends StatelessWidget {
                                         ),
                                         child: CachedNetworkImage(
                                           imageUrl:
-                                          'https://image.tmdb.org/t/p/w500${movie.posterPath}',
+                                              'https://image.tmdb.org/t/p/w500${movie.posterPath}',
                                           placeholder: (context, url) =>
-                                          const Center(
+                                              const Center(
                                             child: CircularProgressIndicator(),
                                           ),
                                           errorWidget: (context, url, error) =>
-                                          const Icon(Icons.error),
+                                              const Icon(Icons.error),
                                         ),
                                       ),
                                     ),
@@ -310,16 +308,5 @@ class DetailContent extends StatelessWidget {
     }
 
     return result.substring(0, result.length - 2);
-  }
-
-  String _showDuration(int runtime) {
-    final int hours = runtime ~/ 60;
-    final int minutes = runtime % 60;
-
-    if (hours > 0) {
-      return '${hours}h ${minutes}m';
-    } else {
-      return '${minutes}m';
-    }
   }
 }
