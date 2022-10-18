@@ -1,5 +1,4 @@
 import 'package:ditonton/presentation/pages/tv_pages/now_playing_tv.dart';
-import 'package:ditonton/presentation/pages/tv_pages/popular_tv_page.dart';
 import 'package:ditonton/presentation/provider/provider_tv/tv_bloc.dart';
 import 'package:mocktail/mocktail.dart';
 
