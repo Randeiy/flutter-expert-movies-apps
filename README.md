@@ -55,3 +55,5 @@ Jika kamu menerapkan modular pada project, Anda dapat memanfaatkan berkas `test.
 ![WhatsApp Image 2022-10-18 at 10 02 07](https://user-images.githubusercontent.com/111168939/196325803-d409520d-bed8-4c3c-af71-0ba824d434a4.jpeg)
 
 ![WhatsApp Image 2022-10-18 at 09 09 25](https://user-images.githubusercontent.com/111168939/196325301-31f62d41-2f58-4c8c-90ae-5e01cb6118e6.jpeg)
+
+![WhatsApp Image 2022-10-18 at 11 32 30](https://user-images.githubusercontent.com/111168939/196336079-dee898cc-2ff8-40f9-9523-0ae5fb03cebd.jpeg)
